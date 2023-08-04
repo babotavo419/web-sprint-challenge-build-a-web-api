@@ -18,15 +18,15 @@ async function validateProjectId(req, res, next) {
 }
 
 function validateProject(req, res, next) {
-  const project = req.body;
-  if (!project.name || !project.description) {
-    res.status(400).json({
-      message: 'Missing required name or description field',
-    });
-  } else {
-    next();
-  }
-}
+    const project = req.body;
+    if (!project.name || !project.description || project.completed === undefined) {
+      res.status(400).json({
+        message: 'Missing required name, description, or completed field',
+      });
+    } else {
+      next();
+    }
+  }  
 
 module.exports = {
   validateProjectId,
